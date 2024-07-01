@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Box, Flex, useColorMode } from '@chakra-ui/react';
-import { Calendar } from '@/components/ui/calendar'; 
+import { Calendar } from '../components/ui/calendar'; 
 
 import 'react-quill/dist/quill.snow.css';
 import './custom-quill.css'; 
