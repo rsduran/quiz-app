@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 import { ChakraProvider } from '@chakra-ui/react';
 import { MathJaxContext } from 'better-react-mathjax';
 import type { AppProps } from 'next/app';
-import theme from '../styles/theme';
-import '../styles/globals.css';
+import theme from '../styles/theme'; // Updated path
+import '../styles/globals.css'; // Updated path
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
