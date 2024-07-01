@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Box, Flex, useColorMode } from '@chakra-ui/react';
-// import { Calendar } from '../ui/calendar'; // Updated path
+import { Calendar } from '@/components/ui/calendar'; 
 
 import 'react-quill/dist/quill.snow.css';
 import './custom-quill.css'; 
@@ -68,12 +68,12 @@ const CalendarEditor = () => {
   return (
     <Flex width="80%" mx="auto" mt={5} justify="space-between">
       <Box flexShrink={0}>
-        {/* <Calendar
+        <Calendar
           mode="single"
           selected={date}
           onSelect={setDate}
           className="rounded-md border"
-        /> */}
+        />
       </Box>
       <Box flexGrow={1} ml={4}>
         <QuillNoSSRWrapper
