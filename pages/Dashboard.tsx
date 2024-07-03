@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import DashboardNavbar from '../components/DashboardNavbar';
 import { Box } from '@chakra-ui/react';
 import LoadingLayout from '../components/LoadingLayout';
+import CalendarEditor from '../components/CalendarEditor';
 import DynamicQuizTable from '../components/DynamicQuizTable';
 import CountdownTimer from '../components/CountdownTimer';
 import MotivationalQuote from '../components/MotivationalQuote';
-import CalendarEditor from '../components/CalendarEditor'; // Ensure this path is correct
 
 const Dashboard = () => {
   const [refreshKey, setRefreshKey] = useState(0);
