@@ -5,24 +5,22 @@ pipeline {
         nodejs 'nodejs'
     }
     environment  {
-        // Docker repository and credentials for DockerHub
-        DOCKER_REPO_NAME = 'rsduran/frontend' // Update this with your DockerHub repository for the frontend
-        DOCKERHUB_CREDENTIALS_ID = 'docker'    // ID for the DockerHub credentials
+        DOCKER_REPO_NAME = 'rsduran/frontend'
+        DOCKERHUB_CREDENTIALS_ID = 'docker'
     }
     stages {
         stage('Cleaning Workspace') {
             steps {
-                cleanWs() // Clean the workspace before starting the build
+                cleanWs()
             }
         }
         stage('Checkout from Git') {
             steps {
-                // Checkout the code from GitHub repository
                 git branch: 'main', credentialsId: 'github', url: 'https://github.com/rsduran/quiz-app.git'
             }
         }
         
-        // Uncomment the SonarQube Analysis and Quality Check stages if needed
+        // Uncomment SonarQube Analysis and Quality Check stages if needed
         // stage('Sonarqube Analysis') {
         //     steps {
         //         dir('frontend') {
@@ -55,7 +53,6 @@ pipeline {
             steps {
                 script {
                     dir('frontend') {
-                        // Clean up Docker system and build the Docker image for the frontend
                         sh 'docker system prune -f'
                         sh 'docker container prune -f'
                         sh 'docker build -t ${DOCKER_REPO_NAME}:${BUILD_NUMBER} -f Dockerfile.frontend .'
@@ -66,7 +63,6 @@ pipeline {
         stage("DockerHub Image Push") {
             steps {
                 script {
-                    // Push the Docker image to DockerHub
                     docker.withRegistry('https://index.docker.io/v1/', "${DOCKERHUB_CREDENTIALS_ID}") {
                         sh 'docker push ${DOCKER_REPO_NAME}:${BUILD_NUMBER}'
                     }
@@ -74,7 +70,7 @@ pipeline {
             }
         }
 
-        // Uncomment the Trivy Image Scan stage if needed
+        // Uncomment Trivy Image Scan stage if needed
         // stage("TRIVY Image Scan") {
         //     steps {
         //         sh 'trivy image ${DOCKER_REPO_NAME}:${BUILD_NUMBER} > trivyimage.txt' 
@@ -89,7 +85,6 @@ pipeline {
             steps {
                 dir('Kubernetes-Manifests/Frontend') {
                     withCredentials([string(credentialsId: 'github_token', variable: 'GITHUB_TOKEN')]) {
-                        // Update the deployment YAML file with the new Docker image tag and push changes to GitHub
                         sh '''
                             git config user.email "reineirsamonteduran@gmail.com"
                             git config user.name "rsduran"

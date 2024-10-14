@@ -1,7 +1,7 @@
 #!/bin/bash
 # For Ubuntu 22.04
 
-# Update Your System
+# Update System
 sudo apt update -y
 sudo apt upgrade -y
 

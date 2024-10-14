@@ -7,7 +7,7 @@ spec:
   ports:
   - port: 5000
     protocol: TCP
-    targetPort: 5000  # Ensure the target port is set to your backend container's port
+    targetPort: 5000
   type: ClusterIP
   selector:
     app: backend

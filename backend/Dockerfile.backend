@@ -1,28 +1,28 @@
-# Use an official Python runtime (Python 3.10)
+# python 3.10 base image
 FROM python:3.10-slim
 
-# Install necessary system dependencies including git
+# install git
 RUN apt-get update && apt-get install -y git
 
-# Set the working directory in the container
+# set up working directory
 WORKDIR /app
 
-# Copy the requirements.txt file and install dependencies
+# install python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code
+# copy application code
 COPY . .
 
-# Install additional dependencies
+# install additional packages
 RUN pip install git+https://github.com/MIDORIBIN/langchain-gpt4free.git
 RUN pip install -U langchain-community
 
-# Install Gunicorn
+# install gunicorn server
 RUN pip install gunicorn
 
-# Expose port 5000 for the backend service
+# open port 5000
 EXPOSE 5000
 
-# Use Gunicorn to run the application
+# start the application with gunicorn
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "main:app"]

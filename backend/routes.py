@@ -1,10 +1,10 @@
 # routes.py
 
-from app_init import app, db  # Absolute imports
+from app_init import app, db
 from flask import request, jsonify, session, send_file
-from models import QuizSet, Question, EditorContent, FurtherExplanation  # Absolute imports
-from scraping_helpers import process_question, process_pinoybix_question, process_examveda_question, process_examprimer_question, fetch_discussion_comments  # Absolute imports
-import config  # Absolute imports
+from models import QuizSet, Question, EditorContent, FurtherExplanation
+from scraping_helpers import process_question, process_pinoybix_question, process_examveda_question, process_examprimer_question, fetch_discussion_comments
+import config
 import random
 from g4f import Provider, models
 from langchain.llms.base import LLM

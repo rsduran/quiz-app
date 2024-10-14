@@ -8,9 +8,9 @@ import re
 from random import choice
 import time
 from app_init import db
-from models import Question  # Changed from relative to absolute import
-import config  # Changed from relative to absolute import
-from config import img_type_directory  # Changed from relative to absolute import
+from models import Question
+import config
+from config import img_type_directory
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
